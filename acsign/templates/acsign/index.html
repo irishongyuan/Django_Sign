@@ -1,0 +1,10 @@
+{% if latest_activity_list %}
+    <ul>
+        {% for activity in latest_activity_list %}
+            <li><a href="{% url 'acsign:detail' activity.id %}">
+                {{activity.activity_theme}}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No activity are available.</p>
+{% endif %}

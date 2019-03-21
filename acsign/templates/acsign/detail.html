@@ -1,0 +1,17 @@
+<h1>{{activity.activity_theme}}</h1>
+<h3>{{activity.pub_date}}</h3>
+
+{% if error_message %}<p><strong>{{error_message}}</strong></p>
+{% endif %}
+
+<form action="{% url 'acsign:sign' activity.id %}" method="post">
+    {% csrf_token %}
+    sign_name: <input type="text" name="sign_name" value="InputYourName"><br>
+    <input type="submit" value="签到">
+    <ul>
+    {% for sign in activity.sign_set.all %}
+        <li>{{ sign.sign_name }} -- {{ sign.sign_date }}</li>
+    {% endfor %}
+    </ul>
+</form>
+
